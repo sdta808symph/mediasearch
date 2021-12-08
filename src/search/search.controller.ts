@@ -1,6 +1,5 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
 import { SearchService } from './search.service';
 
 @Controller('search')
@@ -13,9 +12,7 @@ export class SearchController {
   }
 
   @Get('string')
-  async searchString(
-    @Query('q') query: string,
-  ): Promise<Observable<AxiosResponse<any[]>>> {
+  async searchString(@Query('q') query: string): Promise<AxiosResponse<any>> {
     const result = this.searchService.searchString(query);
     return result;
   }
